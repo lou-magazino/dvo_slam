@@ -4,22 +4,29 @@ project(dvo_slam)
 
 LIST(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake_modules")
 
-find_package(catkin REQUIRED COMPONENTS roscpp dynamic_reconfigure dvo_core dvo_ros sensor_msgs image_transport message_filters cv_bridge visualization_msgs interactive_markers message_generation geometry_msgs)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp dynamic_reconfigure
+  dvo_core
+  dvo_ros
+  sensor_msgs
+  image_transport
+  message_filters
+  cv_bridge
+  visualization_msgs
+  interactive_markers
+  message_generation
+  geometry_msgs
+  rosconsole
+)
 find_package(cmake_modules REQUIRED)
 #find_package(Eigen3 REQUIRED)
 find_package(G2O REQUIRED)
-#find_package(sophus REQUIRED)
-#find_package(Boost REQUIRED thread)
-#find_package(OpenCV REQUIRED)
+find_package(sophus REQUIRED)
+find_package(Boost REQUIRED thread)
+find_package(OpenCV REQUIRED)
 find_package(TBB REQUIRED)
 
 LIST(APPEND CMAKE_CXX_FLAGS "-std=c++11")
-
-if(G2O_FOUND)
-  message(STATUS "Found G2O")
-else()
-  message(ERROR "G2O missing")
-endif()
 
 # dynamic reconfigure
 generate_dynamic_reconfigure_options(cfg/GraphVisualizer.cfg cfg/KeyframeSlam.cfg)
@@ -81,17 +88,17 @@ target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
-#add_executable(camera_keyframe_tracker
-#  src/camera_keyframe_tracker_node.cpp
-#)
+add_executable(camera_keyframe_tracker
+  src/camera_keyframe_tracker_node.cpp
+)
 
-#target_link_libraries(camera_keyframe_tracker
-#  ${PROJECT_NAME}
-#)
+target_link_libraries(camera_keyframe_tracker
+  ${PROJECT_NAME}
+)
 
 add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_gencfg)
 
-install(TARGETS dvo_slam
+install(TARGETS dvo_slam camera_keyframe_tracker
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

@@ -8,7 +8,7 @@ find_package(PCL REQUIRED COMPONENTS common filters)
 #find_package(Eigen3 REQUIRED)
 find_package(sophus REQUIRED)
 find_package(Boost REQUIRED COMPONENTS thread)
-#find_package(OpenCV 3 REQUIRED)
+find_package(OpenCV REQUIRED)
 find_package(TBB REQUIRED)
 
 catkin_package(
