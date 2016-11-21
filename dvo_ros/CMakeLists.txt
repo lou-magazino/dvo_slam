@@ -5,7 +5,7 @@ project(dvo_ros)
 find_package(catkin REQUIRED COMPONENTS roscpp tf tf_conversions eigen_conversions dynamic_reconfigure dvo_core sensor_msgs image_transport message_filters cv_bridge visualization_msgs interactive_markers pcl_ros)
 find_package(cmake_modules REQUIRED)
 find_package(PCL REQUIRED COMPONENTS common)
-find_package(Eigen3 REQUIRED)
+#find_package(Eigen3 REQUIRED)
 #find_package(sophus REQUIRED)
 #find_package(Boost REQUIRED thread)
 #find_package(OpenCV 3 REQUIRED)
@@ -61,3 +61,9 @@ target_link_libraries(camera_tracker
 )
 
 add_dependencies(camera_tracker ${PROJECT_NAME}_gencfg)
+
+install(TARGETS dvo_ros camera_tracker
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)

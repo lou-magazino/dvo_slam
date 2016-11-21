@@ -5,7 +5,7 @@ project(dvo_core)
 find_package(catkin REQUIRED COMPONENTS cv_bridge)
 find_package(cmake_modules REQUIRED)
 find_package(PCL REQUIRED COMPONENTS common filters)
-find_package(Eigen3 REQUIRED)
+#find_package(Eigen3 REQUIRED)
 find_package(sophus REQUIRED)
 find_package(Boost REQUIRED COMPONENTS thread)
 #find_package(OpenCV 3 REQUIRED)
@@ -63,4 +63,10 @@ add_library(dvo_visualization
 
 target_link_libraries(dvo_visualization
   dvo_core
+)
+
+install(TARGETS dvo_core dvo_visualization
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

@@ -6,7 +6,7 @@ LIST(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake_modules")
 
 find_package(catkin REQUIRED COMPONENTS roscpp dynamic_reconfigure dvo_core dvo_ros sensor_msgs image_transport message_filters cv_bridge visualization_msgs interactive_markers message_generation geometry_msgs)
 find_package(cmake_modules REQUIRED)
-find_package(Eigen3 REQUIRED)
+#find_package(Eigen3 REQUIRED)
 find_package(G2O REQUIRED)
 #find_package(sophus REQUIRED)
 #find_package(Boost REQUIRED thread)
@@ -90,3 +90,9 @@ target_link_libraries(${PROJECT_NAME}
 #)
 
 add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_gencfg)
+
+install(TARGETS dvo_slam
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
