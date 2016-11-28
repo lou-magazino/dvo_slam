@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 
 project(dvo_core)
+SET(CMAKE_BUILD_TYPE Release)
 
 find_package(catkin REQUIRED COMPONENTS cv_bridge)
 find_package(cmake_modules REQUIRED)
